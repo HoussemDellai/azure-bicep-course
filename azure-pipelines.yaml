@@ -14,6 +14,13 @@ pool:
 
 steps:
 
+- task: RunARMTTKTests@1
+  inputs:
+    templatelocation: '$(templateFile)'
+    resultLocation: '$(System.DefaultWorkingDirectory)\results'
+    allTemplatesMain: false
+    cliOutputResults: true
+
 - task: AzureCLI@2
   displayName: Preview Bicep Changes
   inputs:
