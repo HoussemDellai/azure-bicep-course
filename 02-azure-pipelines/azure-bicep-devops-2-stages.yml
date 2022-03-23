@@ -25,7 +25,7 @@ stages:
     - task: RunARMTTKTests@1
       displayName: Scan Bicep files
       inputs:
-        templatelocation: '$(System.DefaultWorkingDirectory)\$(templateFile)'
+        templatelocation: '01-bicep-webapp'
         resultLocation: '$(System.DefaultWorkingDirectory)\results'
         allTemplatesMain: false
         cliOutputResults: true
