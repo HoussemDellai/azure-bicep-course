@@ -22,6 +22,8 @@ stages:
 
     steps:
     
+    - script: ls $(System.DefaultWorkingDirectory)\01-bicep-webapp
+    
     - task: RunARMTTKTests@1
       displayName: Scan Bicep files
       inputs:
