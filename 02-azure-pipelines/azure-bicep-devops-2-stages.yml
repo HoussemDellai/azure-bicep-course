@@ -1,4 +1,4 @@
-name: Deploy Bicep files
+name: Deploy Bicep files $(Build.BuildId)
 
 trigger:
 - main
@@ -53,7 +53,7 @@ stages:
 
 - stage: deployBicep
   jobs:
-  
+
   - job: waitForValidation
     displayName: Wait for external validation
     pool: server
