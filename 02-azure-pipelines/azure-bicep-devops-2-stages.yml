@@ -34,21 +34,21 @@ stages:
             --template-file $(templateFile) \
             --parameters webAppName=$(webAppName)
 
-# - stage: deploy-bicep
-#   jobs:
-#   - job: deploy-azure
-#     displayName: deploy bicep to Azure
-#     pool:
-#       vmImage: 'ubuntu-latest'
+- stage: deployBicep
+  jobs:
+  - job: deployAzure
+    displayName: deploy bicep to Azure
+    pool:
+      vmImage: 'ubuntu-latest'
 
-#     steps:
-#     - task: AzureCLI@2
-#       displayName: Deploy Bicep To Azure
-#       inputs:
-#         azureSubscription: 'Microsoft-Azure-0(17b12858-3960-4e6f-a663-a06fdae23428)'
-#         scriptType: 'bash'
-#         scriptLocation: 'inlineScript'
-#         inlineScript: |
-#           az deployment group create --resource-group $(resourceGroupName) \
-#             --template-file $(templateFile) \
-#             --parameters webAppName=$(webAppName)
+    steps:
+    - task: AzureCLI@2
+      displayName: Deploy Bicep To Azure
+      inputs:
+        azureSubscription: 'Microsoft-Azure-0(17b12858-3960-4e6f-a663-a06fdae23428)'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az deployment group create --resource-group $(resourceGroupName) \
+            --template-file $(templateFile) \
+            --parameters webAppName=$(webAppName)
