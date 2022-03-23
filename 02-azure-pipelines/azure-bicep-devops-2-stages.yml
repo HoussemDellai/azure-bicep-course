@@ -13,9 +13,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 stages:
-- stage: pre-deploy
+- stage: preDeploy
   jobs:
-  - job: scan-whatif
+  - job: scanWhatif
     displayName: scan and run whatif
     pool:
       vmImage: 'windows-latest'
