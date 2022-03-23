@@ -46,9 +46,9 @@ steps:
 
 CI/CD implemented in Azure DevOps Pipelines: https://dev.azure.com/houssemdellai/Azure-Bicep-Course
 
-More resources:
-https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/test-toolkit
-https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/linter
-https://github.com/Azure/arm-ttk
-https://docs.microsoft.com/en-us/learn/modules/arm-template-test/2-test-toolkit
-https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/manual-validation?view=azure-devops&tabs=yaml
+More resources:  
+https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/test-toolkit  
+https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/linter  
+https://github.com/Azure/arm-ttk  
+https://docs.microsoft.com/en-us/learn/modules/arm-template-test/2-test-toolkit  
+https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/manual-validation?view=azure-devops&tabs=yaml  
