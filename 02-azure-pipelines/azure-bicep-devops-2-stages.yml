@@ -18,9 +18,18 @@ stages:
   - job: scanWhatif
     displayName: scan and run whatif
     pool:
-      vmImage: 'windows-latest'
+      vmImage: 'windows-2022'
 
     steps:
+    
+    - task: RunARMTTKTests@1
+      inputs:
+        templatelocation: '$(templateFile)'
+        resultLocation: '$(System.DefaultWorkingDirectory)\results'
+        allTemplatesMain: false
+        cliOutputResults: true
+        ignoreExitCode: true
+
     - task: AzureCLI@2
       displayName: Preview Bicep Changes
       inputs:
