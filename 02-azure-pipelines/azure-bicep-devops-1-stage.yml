@@ -1,7 +1,7 @@
 name: Deploy Bicep files
 
-trigger:
-- main
+trigger: none
+# - main
 
 variables:
   resourceGroupName: 'rg-bicep-demo-0017'
