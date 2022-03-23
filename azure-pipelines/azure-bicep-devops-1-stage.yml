@@ -4,7 +4,7 @@ trigger:
 - main
 
 variables:
-  resourceGroupName: 'rg-bicep-demo'
+  resourceGroupName: 'rg-bicep-demo-017'
   location: 'westeurope'
   webAppName: 'bicep017'
   templateFile: '01-bicep-webapp/webapp-linux.bicep'
