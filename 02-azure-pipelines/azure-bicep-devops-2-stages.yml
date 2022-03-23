@@ -23,12 +23,20 @@ stages:
     steps:
     
     - task: RunARMTTKTests@1
+      displayName: Scan Bicep files
       inputs:
         templatelocation: '$(templateFile)'
-        resultLocation: '$(System.DefaultWorkingDirectory)\results'
+        resultLocation: $(System.DefaultWorkingDirectory)\results
         allTemplatesMain: false
         cliOutputResults: true
         ignoreExitCode: true
+
+    - task: PublishTestResults@2
+      displayName: Publish Results
+      inputs:
+        testResultsFormat: 'NUnit'
+        testResultsFiles: '$(System.DefaultWorkingDirectory)\results\*-armttk.xml'
+      condition: always()
 
     - task: AzureCLI@2
       displayName: Preview Bicep Changes
