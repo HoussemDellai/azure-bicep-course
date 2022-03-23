@@ -7,7 +7,7 @@ variables:
   resourceGroupName: 'rg-bicep-demo'
   location: 'westeurope'
   storageName: 'bicepstorage0051'
-  templateFile: 'vnet-storage/main.bicep'
+  templateFile: '01-bicep-webapp/webapp-linux.bicep'
 
 pool:
   vmImage: 'ubuntu-latest'
