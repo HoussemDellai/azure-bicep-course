@@ -22,7 +22,7 @@ stages:
 
     steps:
     
-    - script: bicep build $(System.DefaultWorkingDirectory)\01-bicep-webapp
+    - script: bicep build $(System.DefaultWorkingDirectory)\01-bicep-webapp\webapp-linux.bicep
     
     - task: RunARMTTKTests@1
       displayName: Scan Bicep files
