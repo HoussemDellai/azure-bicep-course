@@ -70,6 +70,7 @@ stages:
     displayName: deploy bicep to Azure
     pool:
       vmImage: 'ubuntu-latest'
+    dependsOn: [waitForValidation]
 
     steps:
     - task: AzureCLI@2
