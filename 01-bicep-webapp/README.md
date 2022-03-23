@@ -7,12 +7,12 @@ az group create --name rg-bicep-webapp-021 --location westeurope
 # preview changes
 az deployment group what-if --resource-group rg-bicep-webapp-021 \
    --template-file webapp-linux.bicep \
-   --parameters webAppName='bicep-021'
+   --parameters webAppName='bicep-023'
 
 # deploy the web app using Bicep
 az deployment group create --resource-group rg-bicep-webapp-021 \
    --template-file webapp-linux.bicep \
-   --parameters webAppName='bicep-021'
+   --parameters webAppName='bicep-023'
 ```
 
 More templates are available here:
