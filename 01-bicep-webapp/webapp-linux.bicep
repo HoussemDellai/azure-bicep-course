@@ -1,5 +1,3 @@
-// src: https://github.com/Azure/bicep/blob/main/docs/examples/101/web-app-linux/main.bicep
-
 param webAppName string = uniqueString(resourceGroup().id) // Generate unique String for web app name
 param sku string = 'S1' // The SKU of App Service Plan
 param linuxFxVersion string = 'php|7.4' // The runtime stack of web app
