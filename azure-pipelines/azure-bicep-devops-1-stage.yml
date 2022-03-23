@@ -6,7 +6,7 @@ trigger:
 variables:
   resourceGroupName: 'rg-bicep-demo'
   location: 'westeurope'
-  storageName: 'bicepstorage0051'
+  webAppName: 'bicep017'
   templateFile: '01-bicep-webapp/webapp-linux.bicep'
 
 pool:
@@ -25,7 +25,7 @@ steps:
       az group create --name $(resourceGroupName) --location $(location)
       az deployment group what-if --resource-group $(resourceGroupName) \
          --template-file $(templateFile) \
-         --parameters storageName=$(storageName)
+         --parameters webAppName=$(webAppName)
 
 - task: AzureCLI@2
   displayName: Deploy Bicep To Azure
