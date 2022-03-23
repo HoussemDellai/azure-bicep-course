@@ -36,4 +36,4 @@ steps:
     inlineScript: |
       az deployment group create --resource-group $(resourceGroupName) \
          --template-file $(templateFile) \
-         --parameters storageName=$(storageName)
+         --parameters webAppName=$(webAppName)
