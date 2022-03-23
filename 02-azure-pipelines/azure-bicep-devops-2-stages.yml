@@ -18,8 +18,7 @@ stages:
   - job: scanWhatif
     displayName: scan and run whatif
     pool:
-      vmImage: ubuntu-latest
-      # vmImage: windows-2022
+      vmImage: windows-2022
 
     steps:
     
@@ -54,6 +53,19 @@ stages:
 
 - stage: deployBicep
   jobs:
+  
+  - job: waitForValidation
+    displayName: Wait for external validation
+    pool: server
+    timeoutInMinutes: 4320 # job times out in 3 days
+    steps:
+    - task: ManualValidation@0
+      timeoutInMinutes: 1440 # task times out in 1 day
+      inputs:
+        notifyUsers: 'houssem.dellai@live.com'
+        instructions: 'Please validate the build $(Build.BuildId) configuration and resume'
+        onTimeout: 'resume'
+
   - job: deployAzure
     displayName: deploy bicep to Azure
     pool:
