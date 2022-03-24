@@ -1,5 +1,10 @@
 ## deploy ARM template using Azure CLI
 
+Prerequisites: you need to have the following:  
+
+1) Azure subscription with Contributor role  
+2) Azure CLI: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli  
+
 ```bash
 # create resource group
 az group create --name rg-bicep-webapp-011 --location westeurope
