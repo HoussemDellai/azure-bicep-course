@@ -43,7 +43,7 @@ az webapp show --name azure-cli-webapp-011 \
 
 ```bash
 # cleanup the resources
-az group create -n rg-azure-cli-webapp
+az group delete -n rg-azure-cli-webapp
 ```
 
 More resources:  
