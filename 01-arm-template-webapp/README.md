@@ -21,4 +21,7 @@ az deployment group create --resource-group rg-bicep-webapp-011 \
 ```
 
 More templates are available here:
-https://github.com/Azure/bicep/blob/main/docs/examples/
+https://github.com/Azure/bicep/blob/main/docs/examples/  
+
+More resources:  
+https://docs.microsoft.com/en-us/azure/cloud-shell/features#deep-integration-with-open-source-tooling  
