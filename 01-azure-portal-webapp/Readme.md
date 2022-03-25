@@ -9,7 +9,7 @@ Select Create a resource.
 
 Choose Web App. 
 
-<img src="images\02choose-webapp.png">
+<img src="images\02-choose-webapp.png">
 
 Fill the template with the following parameters:  
 1) Web app resource group  
