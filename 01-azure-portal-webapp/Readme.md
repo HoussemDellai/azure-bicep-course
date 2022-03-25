@@ -9,7 +9,7 @@ Select Create a resource.
 
 Choose Web App. 
 
-[INSERT IMAGE HERE]
+<img src="images\02choose-webapp.png">
 
 Fill the template with the following parameters:  
 1) Web app resource group  
@@ -17,10 +17,11 @@ Fill the template with the following parameters:
 3) Choose the application runtime, Java 11 for example.  
 4) Choose the App Service Plan name.  
 
-[INSERT IMAGE HERE]
-[INSERT IMAGE HERE]
+<img src="images\03-basics-webapp-p1.png">
+<img src="images\03-basics-webapp-p2.png">
 
 Then continue with the default configuration to create the resources. Click the Create button.  
 In a few seconds, the resources should be created with a link to view them.  
 
-[INSERT IMAGE HERE]
+<img src="images\04-created-resources.png">
+
