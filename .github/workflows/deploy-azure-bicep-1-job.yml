@@ -59,7 +59,7 @@ jobs:
         uses: azure/arm-deploy@v1
         with:
           subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
-          resourceGroupName: $RESOURCE_GROUP
+          resourceGroupName: rg-bicep-github-acctions # $RESOURCE_GROUP
           template: 01-bicep-webapp/webapp-linux.bicep
           parameters: webAppName='$WEBAPP_NAME'
           failOnStdErr: false
