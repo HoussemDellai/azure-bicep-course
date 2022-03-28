@@ -52,7 +52,8 @@ jobs:
           # Additional parameters to be applied on the ARM template or Bicep. Multiple parameters should be separated by spaces.
           additionalParameters: webAppName=$WEBAPP_NAME # optional
           
-  deploy-azure-bicep:
+  deploy-azure-bicep-dev:
+    environment: dev
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
