@@ -1,0 +1,86 @@
+name: Deploy-Azure-Bicep-2-jobs
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  RESOURCE_GROUP: rg-bicep-github-actions-037
+  WEBAPP_NAME: bicep-037
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  preview-bicep-changes:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Login to Azure
+        uses: Azure/login@v1.4.3
+        with:
+          # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+#      - name: Create Azure Resource Group
+#        uses: Azure/cli@v1.0.6
+#        with:
+#          # Azure CLI version to be used to execute the script. If not provided, latest version is used
+#          # azcliversion: 2.34.1 # optional, default is agentazcliversion
+#          # Specify the script here
+#          inlineScript: |
+#            az version
+#            az group create -n $RESOURCE_GROUP -l westeurope
+      - name: Preview Changes from Bicep
+        uses: Azure/deployment-what-if-action@v1.0.0
+        with:
+          subscription: ${{ secrets.SUBSCRIPTION_ID  }} # Subscription ID
+          resourceGroup: $RESOURCE_GROUP # Resource group name
+          templateFile: 01-bicep-webapp/webapp-linux.bicep # ARM template or Bicep file
+          # parametersFile: # optional # Parameters file for the ARM template or Bicep
+          # Additional parameters to be applied on the ARM template or Bicep. Multiple parameters should be separated by spaces.
+          additionalParameters: webAppName=$WEBAPP_NAME # optional
+          
+  deploy-azure-bicep:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Login to Azure
+        uses: Azure/login@v1.4.3
+        with:
+          # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Create Azure Resource Group
+        uses: Azure/cli@v1.0.6
+        with:
+          # Azure CLI version to be used to execute the script. If not provided, latest version is used
+          # azcliversion: 2.34.1 # optional, default is agentazcliversion
+          # Specify the script here
+          inlineScript: |
+            az version
+            az group create -n $RESOURCE_GROUP -l westeurope
+
+      - name: Deploy Bicep to Azure
+        uses: azure/arm-deploy@v1
+        with:
+          subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
+          resourceGroupName: ${{ env.RESOURCE_GROUP }}
+          template: 01-bicep-webapp/webapp-linux.bicep
+          parameters: webAppName=${{ env.WEBAPP_NAME }}
+          failOnStdErr: false
