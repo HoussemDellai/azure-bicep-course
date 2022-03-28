@@ -49,7 +49,7 @@ jobs:
         uses: Azure/deployment-what-if-action@v1.0.0
         with:
           # Subscription ID
-          subscription: ${{ secrets.AZURE_CREDENTIALS }}
+          subscription: ${{ secrets.SUBSCRIPTION_ID  }}
           # Resource group name
           resourceGroup: $RESOURCE_GROUP
           # ARM template or Bicep file
