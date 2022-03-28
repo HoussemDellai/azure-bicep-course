@@ -29,13 +29,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Azure Login
+      - name: Login to Azure
         uses: Azure/login@v1.4.3
         with:
           # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Azure CLI Action
+      - name: Create Azure Resource Group
         uses: Azure/cli@v1.0.6
         with:
           # Azure CLI version to be used to execute the script. If not provided, latest version is used
@@ -45,18 +45,21 @@ jobs:
             az version
             az group create -n $RESOURCE_GROUP -l westeurope
 
-      - name: deployment-what-if
+      - name: Preview Changes fron Bicep
         uses: Azure/deployment-what-if-action@v1.0.0
         with:
-          # Subscription ID
-          subscription: ${{ secrets.SUBSCRIPTION_ID  }}
-          # Resource group name
-          resourceGroup: $RESOURCE_GROUP
-          # ARM template or Bicep file
-          templateFile: 01-bicep-webapp/webapp-linux.bicep
-          # Parameters file for the ARM template or Bicep
-          # parametersFile: # optional
+          subscription: ${{ secrets.SUBSCRIPTION_ID  }} # Subscription ID
+          resourceGroup: $RESOURCE_GROUP # Resource group name
+          templateFile: 01-bicep-webapp/webapp-linux.bicep # ARM template or Bicep file
+          # parametersFile: # optional # Parameters file for the ARM template or Bicep
           # Additional parameters to be applied on the ARM template or Bicep. Multiple parameters should be separated by spaces.
           additionalParameters: webAppName='$WEBAPP_NAME' # optional
           
-      
+      - name: Deploy Bicep to Azure
+        uses: azure/arm-deploy@v1
+        with:
+          subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
+          resourceGroupName: $RESOURCE_GROUP
+          template: 01-bicep-webapp/webapp-linux.bicep
+          parameters: webAppName='$WEBAPP_NAME'
+          failOnStdErr: false
