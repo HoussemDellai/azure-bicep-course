@@ -53,7 +53,7 @@ jobs:
           templateFile: 01-bicep-webapp/webapp-linux.bicep # ARM template or Bicep file
           # parametersFile: # optional # Parameters file for the ARM template or Bicep
           # Additional parameters to be applied on the ARM template or Bicep. Multiple parameters should be separated by spaces.
-          additionalParameters: webAppName='$WEBAPP_NAME' # optional
+          additionalParameters: webAppName=$WEBAPP_NAME # optional
           
       - name: Deploy Bicep to Azure
         uses: azure/arm-deploy@v1
@@ -61,5 +61,5 @@ jobs:
           subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
           resourceGroupName: rg-bicep-github-acctions # $RESOURCE_GROUP
           template: 01-bicep-webapp/webapp-linux.bicep
-          parameters: webAppName='$WEBAPP_NAME'
+          parameters: webAppName=$WEBAPP_NAME
           failOnStdErr: false
