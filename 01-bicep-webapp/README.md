@@ -1,4 +1,4 @@
-## deploy Bicep template using Azure CLI
+## Deploy Bicep template using Azure CLI
 
 ```bash
 # create resource group
